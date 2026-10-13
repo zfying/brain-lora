@@ -1,4 +1,4 @@
-# brain-lora
+# BrainLoRA
 
 Code for *Scaling Parameter-Efficient Fine-Tuning for Brain Encoding*: a
 LoRA-adapted Qwen3-Omni-30B-A3B as an encoding model of fMRI responses to
@@ -30,32 +30,32 @@ naturalistic video (CNeuroMod / Algonauts 2025).
 
 ## Results
 
-Mean per-parcel Pearson r on Friends season 6 (validation), averaged over the
-four subjects, after the re-fit. Each row is one run (seed 0).
+Mean per-parcel Pearson r, averaged over the four subjects, after the re-fit.
+Val is Friends season 6. ID and OOD are the Algonauts 2025 challenge server's
+scores on held-out Friends season 7 and the out-of-distribution movies. Each row
+is one run (seed 0).
 
-| model | trainable parameters | r |
-| --- | --- | --- |
-| frozen backbone + linear | 52.3M | 0.291 |
-| frozen backbone + cross-attention | 52.5M | 0.312 |
-| LoRA + linear | 61.2M | 0.326 |
-| LoRA + cross-attention | 61.4M | 0.331 |
+| model | trainable parameters | val | ID | OOD |
+| --- | --- | --- | --- | --- |
+| frozen backbone + linear | 52.3M | 0.291 | 0.287 | 0.187 |
+| frozen backbone + cross-attention | 52.5M | 0.312 | 0.307 | 0.212 |
+| LoRA + linear | 61.2M | 0.326 | 0.322 | 0.222 |
+| LoRA + cross-attention | 61.4M | 0.331 | 0.327 | 0.228 |
 
 ## Setup
 
-One 80 GB GPU (A100/A800/H100) per run, CUDA, Python >= 3.10.
+We used the following setting. Other settings are not tested.
+
+* one NVIDIA A800 (80 GB) per run, CUDA 12.6
+* Python 3.10, torch 2.8.0, transformers 4.57.1, peft 0.18.0, flash-attn 2.8.1
 
 ```bash
 pip install -e ".[test]"
-pip install flash-attn --no-build-isolation
+pip install flash-attn==2.8.1 --no-build-isolation
 ```
 
 The backbone, `Qwen/Qwen3-Omni-30B-A3B-Thinking`, is downloaded from the
 Hugging Face Hub on first use.
-
-The paper's runs used torch 2.8-2.9 and transformers 4.57.1-4.57.3. Other
-versions change the backbone's activations slightly (the mixture-of-experts
-routing amplifies small numerical differences), so features are not
-bit-identical across environments; scores on season 6 agree to about 1e-4 in r.
 
 ### Data
 
