@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brain-lora"
+version = "1.0.0"
+description = "Parameter-efficient fine-tuning of Qwen3-Omni for fMRI encoding (Algonauts 2025)"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.8",
+    "transformers==4.57.*",
+    "peft>=0.17",
+    "safetensors>=0.4",
+    "huggingface-hub>=0.30",
+    "accelerate>=1.0",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pandas>=2.2",
+    "h5py>=3.11",
+    "scikit-learn>=1.5",
+    "moviepy>=2,<3",
+    "julius>=0.2.7",
+    "opencv-python-headless>=4.10",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+brain_lora = ["resources/*.tsv"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
