@@ -1,6 +1,6 @@
 # BrainLoRA
 
-Code for *Scaling Parameter-Efficient Fine-Tuning for Brain Encoding*: a
+Code for [*Scaling Parameter-Efficient Fine-Tuning for Brain Encoding*](https://arxiv.org/abs/2610.26802): a
 LoRA-adapted Qwen3-Omni-30B-A3B as an encoding model of fMRI responses to
 naturalistic video (CNeuroMod / Algonauts 2025).
 
@@ -166,6 +166,20 @@ tests/                 unit tests (CPU)
 
 ```bash
 pytest tests
+```
+
+## Citation
+
+```bibtex
+@misc{ying2026scaling,
+      title={Scaling Parameter-Efficient Fine-Tuning for Brain Encoding}, 
+      author={Zhuofan Josh Ying and Guanglong Sun and Nolan Ho and Kieran Liu and Rui Yang and Andrew Chen and Nikolaus Kriegeskorte and Pony Ma and Hossein Adeli},
+      year={2026},
+      eprint={2610.26802},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2610.26802}, 
+}
 ```
 
 ## Acknowledgements
